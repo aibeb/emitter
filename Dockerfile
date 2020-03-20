@@ -1,4 +1,7 @@
 FROM golang:alpine AS builder
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+
 MAINTAINER Roman Atachiants "roman@misakai.com"
 
 # Copy the directory into the container outside of the gopath
@@ -13,6 +16,15 @@ RUN apk add --no-cache git g++ \
 
 # Base image for runtime
 FROM alpine:latest
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+
+RUN apk add --no-cache tzdata\
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
+    && apk del tzdata \
+    && rm -rf /var/cache/apk/*
+
 RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/

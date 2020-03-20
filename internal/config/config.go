@@ -27,8 +27,8 @@ import (
 
 // Constants used throughout the service.
 const (
-	ChannelSeparator = '/'   // The separator character.
-	maxMessageSize   = 65536 // Default Maximum message size allowed from/to the peer.
+	ChannelSeparator = '/'    // The separator character.
+	maxMessageSize   = 512000 // Default Maximum message size allowed from/to the peer.
 )
 
 // VaultUser is the vault user to use for authentication

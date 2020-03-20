@@ -21,8 +21,8 @@ import (
 )
 
 const (
-	maxHeaderSize  = 6     // max MQTT header size
-	maxMessageSize = 65536 // max MQTT message size is impossible to increase as per protocol (uint16 len)
+	maxHeaderSize  = 6      // max MQTT header size
+	maxMessageSize = 512000 // max MQTT message size is impossible to increase as per protocol (uint16 len)
 )
 
 // ErrMessageTooLarge occurs when a message encoded/decoded is larger than max MQTT frame.
